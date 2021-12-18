@@ -6,7 +6,8 @@
     android:layout_height="160dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardElevation="16dp">
+    android:layout_margin="2dp"
+    app:cardElevation="6dp">
 
     <TextView
         android:id="@+id/textViewNames"
