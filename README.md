@@ -2,7 +2,7 @@
 
 Lista de Evaluadores
 
-<img src="https://user-images.githubusercontent.com/68710846/146620388-f0a83104-7622-4615-b27a-1f266ea0a8f5.png" alt="" height="600" />
+<img src="https://user-images.githubusercontent.com/68710846/147156573-82058b43-5feb-41f2-82bc-cf6c38a75dbf.png" alt="" height="600" />
 
 Lista de Funcionarios a Evaluar
 
