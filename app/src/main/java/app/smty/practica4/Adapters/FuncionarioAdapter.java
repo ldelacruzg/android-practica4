@@ -8,12 +8,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
-
+import com.bumptech.glide.Glide;
 import java.util.List;
-
-import app.smty.practica4.Models.Evaluador;
 import app.smty.practica4.Models.Funcionario;
 import app.smty.practica4.R;
 
@@ -71,10 +67,11 @@ public class FuncionarioAdapter extends RecyclerView.Adapter<FuncionarioAdapter.
                 textViewEvalInicio.setText(funcionario.getFechainicio());
             }
 
-            Picasso.get()
+            Glide.with(itemView.getContext())
                     .load(funcionario.getImgjpg())
+                    .placeholder(R.drawable.ic_baseline_rotate_right_24)
                     .error(R.drawable.unknown)
-                    .into(this.imageViewFuncionario);
+                    .into(imageViewFuncionario);
         }
     }
 }

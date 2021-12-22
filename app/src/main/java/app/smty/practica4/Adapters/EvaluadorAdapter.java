@@ -6,12 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -61,10 +60,11 @@ public class EvaluadorAdapter extends RecyclerView.Adapter<EvaluadorAdapter.View
         public void bind(Evaluador evaluador, OnItemClickListener listener) {
             this.textViewName.setText(evaluador.getNombres());
             this.textViewArea.setText(evaluador.getArea());
-            Picasso.get()
+            Glide.with(itemView.getContext())
                     .load(evaluador.getImgjpg())
+                    .placeholder(R.drawable.ic_baseline_rotate_right_24)
                     .error(R.drawable.unknown)
-                    .into(this.imageViewFoto);
+                    .into(imageViewFoto);
 
             this.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

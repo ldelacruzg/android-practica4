@@ -5,29 +5,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.security.cert.CertificateException;
 import java.util.List;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocketFactory;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-
-import app.smty.practica4.Adapters.EvaluadorAdapter;
 import app.smty.practica4.Adapters.FuncionarioAdapter;
-import app.smty.practica4.Models.Evaluador;
 import app.smty.practica4.Models.Funcionario;
-import app.smty.practica4.Models.ResponseEvaluador;
 import app.smty.practica4.Models.ResponseFuncionario;
 import app.smty.practica4.Services.EvaluadoresAdminService;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
