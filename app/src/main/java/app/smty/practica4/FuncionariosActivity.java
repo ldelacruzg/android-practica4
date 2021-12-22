@@ -44,16 +44,18 @@ public class FuncionariosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_funcionarios);
 
+        // inicializar components UI
+        recyclerViewFuncionarios = findViewById(R.id.recyclerViewFuncionarios);
+
+        // Bundle para enviar los datos
         Bundle bundle = getIntent().getExtras();
         String e = bundle.getString("e");
 
+        // llamar función para la petición
         requestFuncionarios(e);
     }
 
     private void rellenarLista(List<Funcionario> funcionariosList) {
-        // inicializar components UI
-        recyclerViewFuncionarios = findViewById(R.id.recyclerViewFuncionarios);
-
         // Adaptador es la forma visual como se mostraran los datos
         layoutManager = new LinearLayoutManager(this);
         adapter = new FuncionarioAdapter(funcionariosList, R.layout.list_item_funcionario);
@@ -66,8 +68,7 @@ public class FuncionariosActivity extends AppCompatActivity {
 
     private void requestFuncionarios(String e) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://evaladmin.uteq.edu.ec/ws/")
-                .client(getUnsafeOkHttpClient().build())
+                .baseUrl("https://uealecpeterson.net/ws/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -82,49 +83,8 @@ public class FuncionariosActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseFuncionario> call, Throwable t) {
-
+                Toast.makeText(FuncionariosActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    public static OkHttpClient.Builder getUnsafeOkHttpClient() {
-        try {
-            // Create a trust manager that does not validate certificate chains
-            final TrustManager[] trustAllCerts = new TrustManager[]{
-                    new X509TrustManager() {
-                        @Override
-                        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                        }
-
-                        @Override
-                        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws CertificateException {
-                        }
-
-                        @Override
-                        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
-                            return new java.security.cert.X509Certificate[]{};
-                        }
-                    }
-            };
-
-            // Install the all-trusting trust manager
-            final SSLContext sslContext = SSLContext.getInstance("SSL");
-            sslContext.init(null, trustAllCerts, new java.security.SecureRandom());
-
-            // Create an ssl socket factory with our all-trusting manager
-            final SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-
-            OkHttpClient.Builder builder = new OkHttpClient.Builder();
-            builder.sslSocketFactory(sslSocketFactory, (X509TrustManager) trustAllCerts[0]);
-            builder.hostnameVerifier(new HostnameVerifier() {
-                @Override
-                public boolean verify(String hostname, SSLSession session) {
-                    return true;
-                }
-            });
-            return builder;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 }
